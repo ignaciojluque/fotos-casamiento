@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Sofi y Juan</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('civil-foto.jpeg'); /* Ruta de la imagen */
+            background-size: cover; /* Hace que la imagen cubra el área sin perder su proporción */
+            background-position: 50% 40%; /* Ajusta la posición del fondo (horizontal, vertical) */
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            max-width: 100%;
+            padding: 0 20px;
+        }
+
+        .countdown {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center; /* Para centrar los botones horizontalmente */
+            gap: 20px; /* Espacio entre los botones */
+        }
+
+        .link {
+            text-decoration: none;
+            background-color: #ff7f50;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            text-align: center;
+            width: auto;
+            max-width: 200px; /* Limita el tamaño de los botones en pantallas grandes */
+        }
+
+        .link:hover {
+            background-color: #ff4500;
+        }
+
+        @media (max-width: 768px) {
+            .countdown {
+                font-size: 1.8rem; /* Reduce el tamaño del contador en pantallas más pequeñas */
+            }
+
+            .link {
+                font-size: 1rem; /* Ajusta el tamaño de los botones en móvil */
+                padding: 10px 20px; /* Reduce el padding de los botones en móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="countdown" id="countdown"></div>
+        <div class="links">
+            <a href="https://photos.app.goo.gl/SsZQPUowjndpBJoE8" class="link" target="_blank">Previa</a>
+            <a href="https://photos.app.goo.gl/SsZQPUowjndpBJoE8" class="link" target="_blank">Ceremonia</a>
+            <a href="https://photos.app.goo.gl/SsZQPUowjndpBJoE8" class="link" target="_blank">Fiesta</a>
+        </div>
+    </div>
+
+    <script>
+        const weddingDate = new Date("May 3, 2025 12:00:00").getTime();
+        
+        const countdown = document.getElementById('countdown');
+        
+        setInterval(function() {
+            let now = new Date().getTime();
+            let timeLeft = weddingDate - now;
+
+            let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (timeLeft < 0) {
+                countdown.innerHTML = "¡Es el día!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
